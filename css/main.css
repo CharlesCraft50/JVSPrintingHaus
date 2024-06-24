@@ -1,0 +1,1933 @@
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  margin: 0;
+  font-family: Garamond;
+}
+
+#draggable {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
+
+
+.titlenav a {
+  font-size: 20px;
+}
+
+.topnav {
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  background-color: #f6f4f1;
+  width: 100%;
+}
+
+.topnav a {
+  float: left;
+  color: #595045;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #407864;
+  color: white;
+}
+
+.topnav-centered a {
+  font-size: 40px;
+  float: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.topnav-right {
+  float: right;
+}
+
+.mobile-menu-icon {
+  display: none;
+  position: absolute;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.mobile-menu-icon span {
+  display: block;
+  height: 3px;
+  width: 25px;
+  margin: 5px 0;
+  background: #595045;
+}
+
+.clothesImage {
+  padding: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav {
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .topnav a {
+    display: block;
+    padding: 10px;
+    text-align: left;
+    font-size: 18px;
+  }
+
+  .mobile-menu-icon {
+    display: inline-block;
+    background-color: #f6f4f1;
+    z-index: 1;
+  }
+
+  .topnav-centered a {
+    display: inline-block;
+    position: relative;
+    top: -6px;
+    left: 36px;
+    font-size: 35px;
+    transform: none;
+  }
+
+  .topnav-links {
+    display: none;
+  }
+
+  .clothesImage {
+    max-width: 300px;
+  }
+}
+
+
+.homepage h2 {
+  font-weight: bold;
+  font-variant-caps: small-caps;
+  margin-top: 150px;
+}
+
+.homepage div {
+  text-align: center;
+}
+
+@media screen and (min-width: 601px) {
+  .homepage h2 {
+    font-size: 50px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .homepage h2 {
+    font-size: 20px ;
+  }
+}
+
+.btn {
+  background-color: #3d4141;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  font-family: Garamond, sans-serif;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #333;
+}
+
+.btn-1 {border-radius: 2px;}
+.btn-2 {border-radius: 4px;}
+.btn-3 {border-radius: 8px;}
+.btn-4 {border-radius: 12px;}
+.btn-5 {border-radius: 50%;}
+
+.homepage .btn {
+  font-variant-caps: small-caps;
+  font-size: 50px;
+  font-weight: bold;
+  padding: 20px 50px;
+  border-radius: 35px;
+}
+
+.leftContainer {
+  width: 16%;
+  max-height: 100vh;    
+  overflow-y: auto;
+  border-right: 1px solid #ccc;
+  padding: 0;
+  text-align: center;
+}
+
+.leftContainer#orderList {
+  width: 13%;
+  max-height: 100vh;    
+  overflow-y: auto;
+  border-right: 1px solid #ccc;
+  padding: 0;
+  text-align: center;
+}
+
+#productList {
+  max-height: 100%;
+}
+
+div.product {
+  border: 1px solid gray;
+  cursor: pointer;
+}
+
+.product img {
+  max-width: 120px;
+  height: auto;
+  margin: 20px 5px;
+}
+
+.tshirtContainer {
+  margin-top: 30px; 
+  margin-left: 50px;
+  margin: 30px; 
+  padding: 50px;
+}
+
+#tshirtArea {
+  position: relative;
+  border: 3px solid black;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 25px;
+  overflow: hidden; /* Add overflow: hidden to prevent the customImage from overflowing */
+  width: 100%; /* or set a specific width */
+  height: auto; /* or set a specific height */
+}
+
+#tshirtImage {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  object-fit: cover;
+  margin:0 auto;
+}
+
+#tshirtImage2 {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  object-fit: cover;
+  margin:0 auto;
+}
+
+@media screen and (max-width: 600px) {
+  .leftContainer {
+    width: 100%;
+  }
+  .leftContainer#orderList {
+    width: 100%;
+  }
+  .tshirtContainer {
+    margin-top: 0px; 
+    margin-left: 0px;
+  }
+}
+
+#viewButtons {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+#colorPicker {
+  margin-top: 25px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Pagination styles */
+#pagination {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination .page-item {
+    margin: 0 5px; /* Adjust margin between pagination items */
+}
+
+.pagination .page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    line-height: 1.25;
+    color: white;
+    background-color: #3d4141;
+    border: 1px solid #dee2e6;
+    text-decoration: none;
+}
+
+.pagination .page-link:hover {
+    z-index: 2;
+    color: white;
+    text-decoration: none;
+    background-color: #333;
+    border-color: #333;
+}
+
+.pagination .page-link:focus {
+    z-index: 3;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #3d4141;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #212525;
+    border-color: #212525;
+}
+
+.colorRadio {
+  display: none; /* Hide the radio input */
+}
+
+.colorCircle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  cursor: pointer;
+  position: relative;
+}
+
+.colorRadio:checked + .colorCircle {
+  border-color: white;
+  box-shadow: 0 0 0 2px green;
+}
+
+.viewRadio {
+  display: none; /* Hide the radio input */
+}
+
+.viewRadio:checked + .view-button {
+  outline: 2px solid #f00;
+}
+
+.viewRadio2 {
+  display: none; /* Hide the radio input */
+}
+
+.viewRadio2:checked + .view-button2 {
+  outline: 2px solid #f00;
+}
+
+#actionButtons {
+  margin: 10px;
+}
+
+#actionButtons img {
+  max-width: 120px;
+  height: auto;
+  cursor: pointer;
+}
+
+#chooseSizeButton {
+  font-size: 30px;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.image-container label {
+  font-weight: bold;
+  padding: 5px;
+}
+
+.image-preview {
+  max-width: 100%;
+  margin-top: 10px;
+  text-align: center;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.view-container {
+  margin: 0 10px;
+  text-align: center;
+}
+
+.view-button {
+  max-width: 45px;
+  height: auto;
+  cursor: pointer;
+}
+
+.view-button2 {
+  max-width: 45px;
+  height: auto;
+  cursor: pointer;
+}
+
+.view-label {
+  margin-top: 5px;
+}
+
+        
+#customImageArea {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#customImage {
+    max-width: 80%; /* Adjust the maximum width as a percentage of the T-shirt width */
+    max-height: 80vh; /* Adjust the maximum height as a percentage of the viewport height */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: all-scroll;
+}
+
+.box {
+  background-color: #222;
+  height: 200px;
+  width: 300px;
+  color: #fff;
+  text-align: center;
+  line-height: 200px;
+  margin-top: 10px;
+}
+.ui-rotatable-handle {
+  /*background-color: red;*/
+  background-image: url("https://code.jquery.com/ui/1.12.1/themes/flick/images/ui-icons_ff0084_256x240.png");
+  background-position: -162px -67px;
+}
+.container {
+  margin: 10px auto;
+  max-width: 960px;
+}
+
+.ui-rotatable-handle {
+  height: 25px;
+  width: 25px;
+  background-color: #ffffff; /* Adjust background color as needed */
+  border: 1px solid transparent; /* Make the border less noticeable */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-left: -12.5px;
+  margin-top: -39.5px;
+  cursor: pointer;
+}
+
+.ui-resizable-handle {
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff; /* Adjust background color as needed */
+  border: 1px solid transparent; /* Make the border less noticeable */
+}
+
+.ui-resizable-se {
+  bottom: -5px;
+  right: -5px;
+}
+
+#draggable {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#target {
+    position: relative;
+    width: 100%; /* or set a specific width */
+    height: auto; /* or set a specific height */
+}
+
+.draggableImages {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+}
+
+.buttonContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.draggableImages:hover .buttonContainer {
+  opacity: 1;
+}
+
+.checkButton, .xButton {
+  background: none;
+  color: white;
+  border: none;
+  font-size: 7px;
+  cursor: pointer;
+  margin: 5px 2px;
+  margin-bottom: 30px;
+  padding: 5px 6px;
+  border-radius: 50%;
+  outline: none;
+  position: relative;
+}
+
+.buttonContainer.doneImage {
+  display: none;
+}
+
+.checkButton {
+  background-color: green;
+}
+
+.xButton {
+  background-color: red;
+}
+
+#frontTshirtContainer, #backTshirtContainer, #rightTshirtContainer, #leftTshirtContainer {
+  overflow: hidden;
+}
+
+#backTshirtContainer, #rightTshirtContainer, #leftTshirtContainer {
+  display: none;
+}
+
+
+#chooseSizeContainer {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.size-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.size-row:first-child {
+  border-top: 1px solid #ccc;
+}
+
+.size-label {
+    font-size: 18px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-control {
+    cursor: pointer;
+    padding: 0px 20px;
+    font-size: 25px;
+}
+
+.quantity {
+  margin: 0 15px;
+  font-size: 18px;
+}
+
+.space {
+    width: 250px; /* Adjust the width as needed */
+}
+
+.space2 {
+    width: 200px; /* Adjust the width as needed */
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+#seeDetails {
+  margin-top: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.extraHeight {
+  display: none; 
+  height: 400px;
+}
+
+@media (max-width: 767px) {
+  .size-picker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .size-row {
+    display: flex;
+    align-items: center;
+  }
+
+  .space {
+    width: 0; /* No space for smaller screens */
+    height: 10px; /* Add some vertical space between rows */
+  }
+
+  .space2 {
+    width: 0; /* No space for smaller screens */
+    height: 10px; /* Add some vertical space between rows */
+  }
+
+  .size-label {
+    margin-right: 10px; /* Add margin between size label and controls on smaller screens */
+  }
+
+  .total-row {
+    display: flex;
+    align-items: center;
+  }
+
+  .total-row p:first-child {
+    margin-right: 10px;
+  }
+
+  .extraHeight {
+    display: none; 
+    height: 0;
+  }
+
+}
+
+.detailsArea {
+    margin-top: 20px;
+    display: none;
+}
+
+.detailsArea h2 {
+    margin-bottom: 10px;
+}
+
+.detailsArea table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.detailsArea th, .detailsArea td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.detailsArea th {
+    background-color: #f2f2f2;
+}
+
+.otherCharges {
+    margin-top: 0px;
+    margin-bottom: -45px;;
+}
+
+@media screen and (max-width: 600px) {
+  .otherCharges {
+    font-size: 12px;
+  }
+}
+
+#tShirtImageFinal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#tShirtImageFinal img {
+  max-width: 100%;
+  height: auto;
+  margin: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+#finalArea {
+  display: none;
+}
+
+#goBackStore {
+  display: none;
+}
+
+.login-form-container {
+  width: 100%;
+  max-width: 400px; /* Adjust the maximum width as needed */
+  box-sizing: border-box;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.login-form {
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.register-form-container {
+  width: 100%;
+  max-width: 400px; /* Adjust the maximum width as needed */
+  box-sizing: border-box;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.register-form {
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-form input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#loginLink {
+    display: inline;
+}
+
+.order {
+  border-bottom: 1px solid gray;
+}
+
+.navHid {
+  display: none;
+}
+
+.about-container {
+  text-align: center;
+}
+
+.about-image {
+  max-width: 70%;
+  margin: 20px auto;
+  border-radius: 10px;
+}
+
+.categories-container {
+  text-align: center;
+  margin-top: 20px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.categories-container h2 {
+  color: #333;
+}
+
+.categories-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.categories-container li {
+  margin: 5px 0;
+  color: #555;
+}
+
+.contact-info-container {
+  text-align: center;
+  margin-top: 20px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info-container h2 {
+  color: #333;
+}
+
+.contact-info-container p {
+  margin: 10px 0;
+  color: #555;
+  font-size: 20px;
+}
+
+#customTshirtUploadArea {
+  display: none;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Style for optional text */
+.text-muted {
+    color: #777;
+    font-size: 12px;
+}
+
+#clothTypeChose {
+  text-transform: capitalize;
+}
+
+#customImagesInput {
+  display: none;
+}
+
+#customImagesList {
+  max-height: 100px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.custom-image-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+
+.custom-image-item:hover img {
+  transform: scale(1.2); /* Increase the size on hover */
+  transition: transform 0.3s; /* Add a smooth transition effect */
+}
+
+.removeButton {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: row; /* Align buttons horizontally */
+  height: auto;
+  justify-content: space-between;
+  align-items: stretch; /* Allow buttons to stretch vertically */
+}
+
+.nav-buttons button {
+  cursor: pointer;
+  background-color: #555;
+  color: white;
+  font-size: 64px;
+  width: 50px; /* Adjust width as needed */
+}
+
+.order-card {
+  /*width: 580px;*/
+  overflow: hidden;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  /*margin: 10px;*/
+  margin: auto;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out;
+}
+
+#updateOrderBtn, #cancelOrderBtn {
+  font-size: 28px;
+  width: auto; /* Adjust width to fit content */
+  padding: 10px 20px; /* Add padding to give the buttons some space */
+}
+
+.statusDropdown, .downPaymentInput, .adjustmentPriceInput {
+  margin-top: 10px;
+  height: 30px;
+  width: 80px;
+  box-sizing: border-box;
+}
+
+.adjustment-input-container {
+  position: relative;
+}
+
+.adjustment-input-container span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 0px;
+  margin-right: 5px;
+}
+
+.adjustment-input-container input {
+  margin-right: 10px; /* Add right margin to the input for separation */
+}
+
+
+@media screen and (max-width: 768px) {
+  .adjustment-input-container span {
+    position: static; /* Remove absolute positioning on mobile */
+    margin-top: 5px; /* Add margin to the top for separation */
+  }
+
+  .adjustment-input-container input {
+    margin-right: 0; /* Remove right margin on mobile */
+    margin-top: 5px; /* Add margin to the top for separation */
+  }
+}
+
+#addAdjustmentCheckbox {
+  width: 20px;
+  height: 20px;
+  margin-top: 14px;
+  margin-left: 16px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: fixed;
+  top: 70px;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  overflow-y: auto;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  max-height: 500px;
+  z-index: 999;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.userProfile {
+  display: none;
+}
+
+
+@media screen and (max-width: 600px) {
+  .dropdown-content {
+    right: initial;
+    right: 10px;
+    top: 110px;
+  }
+}
+
+.custom-image-item div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0px 10px;
+}
+
+.custom-image-item a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0px 10px;
+}
+
+#addTextBtn {
+  background-color: #333; 
+  color: white; 
+  border: 1px solid #222; 
+  float: left; 
+  cursor: pointer; 
+  position: absolute; 
+  padding: 2px;
+}
+
+#textEditorArea {
+  display: none;
+}
+
+#textEditorArea input, select {
+  margin-top: 10px;
+}
+
+.customText {
+    position: absolute;
+}
+
+.resize-handle {
+    width: 10px;
+    height: 10px;
+    background-color: #fff; /* Set the background color as needed */
+    border: 1px solid #000; /* Set the border as needed */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.custom-rotator-handle {
+  border: 1px solid #000;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  top: -30px;
+  background-color: gray;
+}
+
+.custom-resizable-handle {
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    border: 1px solid #000;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: se-resize;
+}
+
+#printOrderBtn {
+  font-size: 22px;
+  float: right;
+  padding: 15px;
+}
+
+#selectedTextLabel {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    width: 100%;
+}
+
+#fontSizeWrapper {
+  display: flex;
+  text-align: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+}
+
+#fontSizeInput {
+  width: 50px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+#horizontalSlider {
+  width: 150px;
+  height: 10px;
+  background-color: #ddd;
+  cursor: ew-resize;
+  position: relative;
+}
+
+#sliderHandle {
+  width: 20px;
+  height: 20px;
+  background-color: #3498db;
+  position: absolute;
+  top: -5px;
+  left: 0;
+  cursor: grab;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+#sliderHandle:active {
+  cursor: grabbing;
+}
+
+.option {
+  margin-right: 20px;
+  color: #007BFF;
+  font-weight: normal;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.option.active {
+  font-weight: bold;
+}
+
+#orderList {
+  height: 100%; /* Fill the entire height of the left container */
+  padding: 2px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#searchInput {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 18px;
+}
+
+#orderReferencesList {
+    padding: 0;
+    margin: 0;
+    
+    max-height: 300px; /* Adjust max-height as needed */
+}
+
+.rightContainer {
+  width: 84%;
+}
+
+@media screen and (max-width: 767px) {
+  .rightContainer {
+    width: 100%;
+    order: -1;
+    flex-grow: 1; /* Add this line to make the right container fill the remaining space */
+  }
+
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .nav-buttons button {
+    width: 50px;
+    font-size: 32px;
+  }
+
+  #updateOrderBtn {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rightContainer {
+    width: 100%;
+    order: -1; /* Move this container to the top */
+  }
+
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .nav-buttons button {
+    width: 50px;
+    font-size: 32px; /* Adjust font size for mobile */
+  }
+
+  #updateOrderBtn {
+    width: 100%; /* Make the update button fill the container */
+  }
+}
+
+.profile-container {
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f6f4f1;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px; /* Additional margin top */
+}
+
+#notificationsList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notification-item a {
+  font-size: 16px; /* Adjust font size for better readability */
+  color: #333; /* Change the color to a darker shade */
+  text-decoration: none; /* Remove underline from links */
+  display: block; /* Make notifications clickable */
+  text-align: left;
+  padding: 15px;
+}
+
+.notification-item a:hover {
+  background-color: #f2f2f2; /* Add a subtle background color change on hover */
+}
+
+.notification-item {
+  padding: 10px;
+}
+
+.notification-item #createdAt {
+  color: #007BFF;
+}
+
+.notification-item.seen a {
+  background-color: #e5e0d79e;
+  width: 100%;
+}
+
+.notification-item div {
+  white-space: nowrap; 
+  width: 328px; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.history-item {
+  padding: 10px;
+  border-bottom: 1px solid gray;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.bell-container {
+  position: relative;
+  display: inline-block;
+}
+
+.fa-bell {
+  position: relative;
+  font-size: 24px;
+  color: #595045; /* Default color */
+}
+
+.notification-count {
+  position: absolute;
+  top: 2px;
+  right: 3px;
+  width: 18px;
+  height: 18px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 18px;
+  z-index: 1;
+}
+
+.remarks-item img {
+  max-width: 200px;
+  margin-top: 10px;
+}
+
+.remarks-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  position: relative;
+}
+
+.remarks-item pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.remarkDate {
+  color: #0a3377;
+}
+
+.reply-link {
+  color: #007BFF;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.reply-link:hover {
+  text-decoration: underline;
+}
+
+.notificationTitle {
+  color: #45678b;
+}
+
+.pleaseWait {
+  display: none;
+}
+
+.card {
+  width: 300px;
+  height: 250px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+  display: inline-block;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card p {
+  font-size: 24px;
+  color: #595045;
+}
+
+.card i {
+  font-size: 66px;
+  color: #595045;
+  margin-top: 40px;
+}
+
+.card a {
+  font-size: 28px;
+  text-decoration: none;
+}
+
+.dashboard, 
+.dashboard i {
+    color: #352f29 !important;
+}
+
+#totalAmount, #totalOrders {
+  font-size: 34px;
+}
+
+.colorSquare {
+  width: 50%;
+  height: 263px;
+  border: 2px solid #000;
+  cursor: pointer;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 181px;
+}
+
+.colorRadio:checked + .colorSquare {
+  border-color: white;
+  box-shadow: 0 0 0 2px green;
+}
+
+.reply-item {
+  margin-left: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  position: relative;
+}
+
+/*.replyInputArea {
+  display: none;
+}*/
+
+#remarksArea {
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.centered-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centered-row .card {
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar {
+  padding: 0;
+  background-color: #f6f4f1;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-right: 1px solid #ccc;
+/*  border-radius: 30px;*/
+}
+
+.sidebar-item {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.sidebar-item a {
+  display: block;
+  padding: 10px;
+  margin-left: 10px;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-item a:hover,
+.sidebar-item:hover {
+  background-color: #407864;
+  color: white;
+}
+
+.sidebar-item:hover {
+  background-color: #407864;
+  color: white;
+}
+
+.sidebar-item.active {
+  background-color: #407864;
+  color: white;
+}
+
+.sidebar-item.active a {
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .leftContainer {
+      width: 100%;
+      height: auto;
+      position: relative;
+  }
+  
+  .sidebar-item {
+      border-bottom: none;
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+}
+
+.dashboardContent .card {
+  width: 100%;
+  height: 100%;
+  background-color: #f6f4f1;
+}
+
+.dashboardContent {
+  padding: 10px;
+  border: 5px solid #cfcac3;
+  /*border-radius: 30px;*/
+  background-color: #cfcac3;
+}
+
+.orders-content {
+  padding: 20px;
+  border: 5px solid #e9e7e3;
+  border-radius: 30px;
+  background-color: #e9e7e3;
+}
+
+#orderId {
+  display: none;
+}
+
+#orderReferencesList li {
+  padding: 10px;
+  border: 1px solid gray;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #f6f4f1;
+
+}
+
+.search-container {
+  margin-top: 30px;
+}
+
+ol {
+    counter-reset: section; /* Reset the counter for the ordered list */
+    list-style: none; /* Remove default list styling */
+    padding-left: 0; /* Remove default padding */
+}
+
+ol li {
+    counter-increment: section; /* Increment the counter for each list item */
+    margin-bottom: 10px; /* Adjust spacing between items */
+    position: relative; /* Position relative for dot leader */
+}
+
+ol li:before {
+    content: counter(section) ".\202F\202F\202F\202F"; /* Use the counter value followed by dot */
+    display: inline-block;
+    width: 30px; /* Adjust width for the number */
+    text-align: right; /* Align the number to the right */
+    position: absolute;
+    left: 0; /* Position at the start of the list item */
+}
+
+.card-big {
+  border: 1px solid #f6f4f1;
+  /*border-radius: 30px;*/
+  padding: 40px;
+  background-color: #fbf8f6;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.primary-color {
+  background-color: #f6f4f1;
+}
+
+.secondary-color {
+  background-color: #407864;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+#dialogContainer {
+  display: none;
+}
+
+.pagination {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.paginate_button {
+  background-color: #3d4141;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  font-family: Garamond, sans-serif;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.paginate_button:hover {
+  background-color: #333;
+}
+
+#orderHistoryTable_info {
+  margin: 10px;
+}
+
+.dataTables_length {
+  margin-bottom: 20px;
+}
+
+.dataTables_length label {
+  margin-right: 10px;
+}
+
+.dataTables_length select {
+  padding: 5px 10px;
+}
+
+.row.primary-color {
+  padding: 20px;
+  border: 5px solid #cfcac3;
+  /*border-radius: 30px;*/
+  background-color: #cfcac3;
+  display: flex; 
+  align-items: stretch;
+}
+
+#paginationButtons button {
+  background-color: #3d4141;
+  border: none;
+  color: white;
+  padding: 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  font-family: Garamond, sans-serif;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#paginationButtons button.active {
+  background-color: #333;
+  border: none;
+  color: white;
+  padding: 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  font-family: Garamond, sans-serif;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar-mini {
+  position: relative;
+  padding: 0;
+  background-color: #f6f4f1;
+  width: 60px; /* Adjust as needed */
+  z-index: 1; /* Ensure sidebar is above overlay */
+}
+
+.sidebar-item-mini {
+  padding: 20px 22px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  position: relative; /* Ensure relative positioning */
+}
+
+.sidebar-item-mini a {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-item-mini i {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+
+.sidebar-item-mini span {
+  display: none;
+  margin-left: 10px;
+}
+
+.sidebar-item-mini:hover span {
+  display: none;
+}
+
+.sidebar-item-mini:hover {
+  background-color: #407864;
+  color: white;
+}
+
+.sidebar-item-mini.active {
+  background-color: #407864;
+  color: white;
+}
+
+.sidebar-item-mini.active2 {
+  background-color: #407864;
+  color: white;
+}
+
+.sidebar-item-mini.active a {
+  color: white;
+}
+
+/* Absolute container to show full text */
+.sidebar-hover-container-mini {
+  position: absolute;
+  top: 0;
+  left: 100%; /* Position next to sidebar */
+  background-color: #407864;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  width: auto; /* Initially auto width */
+  max-width: 200px; /* Adjust maximum width as needed */
+  transition: width 0.3s ease, opacity 0.3s ease;
+  z-index: 0; /* Behind sidebar */
+  opacity: 0; /* Hidden by default */
+  pointer-events: none; /* Ignore pointer events */
+  transform: translateX(10px); /* Offset to ensure it's not right on top of the sidebar item */
+}
+
+.sidebar-item-mini:hover .sidebar-hover-container-mini {
+  opacity: 1; /* Show on hover */
+  width: auto; /* Expand to fit content */
+  pointer-events: auto; /* Enable pointer events */
+}
+
+.sidebar-hover-content-mini {
+  color: white; /* Text color for hover container */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar-mini {
+      width: 100%;
+  }
+
+  .sidebar-item-mini span {
+    display: inline;
+    margin-left: 10px;
+  }
+
+  .sidebar-hover-container-mini {
+      left: 0;
+      width: 100%; /* Expand to full width on small screens */
+      max-width: none; /* No maximum width on small screens */
+  }
+}
+
+.primary-input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+#colorPickerContainer {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container-horizontal {
+  margin: 20px auto;
+  overflow-x: hidden;
+}
+
+.horizontal-div {
+  margin: 20px auto; /* Center the container */
+  max-width: 100%; /* Adjust to your layout needs */
+  display: flex; /* Use flexbox for layout */
+  flex-wrap: nowrap; /* Prevent wrapping of items */
+  overflow-x: auto; /* Enable horizontal scrolling on overflow */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS devices */
+}
+
+.horizontal-box {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-right: 10px; /* Adjust margin between boxes */
+  border: 1px solid #ccc;
+  flex: 0 0 auto; /* Prevent flex items from growing */
+  min-width: 150px; /* Minimum width for better mobile display */
+}
+
+.horizontal-box a {
+  display: flex; /* Use flex to align icon and text */
+  align-items: center; /* Center items vertically */
+  text-decoration: none; /* Remove underline */
+  color: #333; /* Text color */
+  padding: 5px; /* Padding around the link */
+}
+
+.horizontal-box a span {
+  margin-left: 5px;
+}
+
+.horizontal-box:hover {
+  background-color: #e0e0e0;
+}
+
+.horizontal-box.active {
+  background-color: #407864;
+  color: white;
+}
+
+.horizontal-box.active a {
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .horizontal-div {
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    overflow-x: hidden; /* Hide horizontal scroll on smaller screens */
+  }
+  
+  .horizontal-box {
+    flex: 0 0 100%; /* Full width for each item on smaller screens */
+    max-width: 100%; /* Full width for each item on smaller screens */
+    margin-bottom: 10px; /* Space below each item on smaller screens */
+  }
+}
+
+#nextButton {
+  float: right;
+  /*background-color: #3d4141;
+  border: none;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 4px 2px;*/
+  font-family: Garamond, sans-serif;
+  cursor: pointer;
+  transition: 0.3s;
+  /*margin-bottom: 10px;*/
+}
+
+#nextButton:hover {
+  background-color: #333;
+}
+
+#prevButton {
+  /*background-color: #3d4141;
+  border: none;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 4px 2px;*/
+  font-family: Garamond, sans-serif;
+  cursor: pointer;
+  transition: 0.3s;
+  /*margin-bottom: 10px;*/
+}
+
+#prevButton:hover {
+  background-color: #333;
+}
+
+@media (max-width: 768px) {
+  #nextButton {
+    position: fixed;
+    top: 90%;
+    right: 0;
+  }
+
+  #prevButton {
+    position: fixed;
+    top: 90%;
+    left: 10px;
+  }
+}

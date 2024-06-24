@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JVS Printing Haus - Upload</title>
+	<link rel="stylesheet" href="css/main.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<!-- jQuery library -->
+	<script src="js/jquery-3.6.4.min.js"></script>
+
+	<!-- jQuery UI library -->
+	<script src="js/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="css/jquery.ui.rotatable.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="js/main.js"></script>
+</head>
+<body class="primary-color">
+	<!-- Top navigation -->
+	<div class="topnav">
+		<!-- Hamburger menu icon for mobile -->
+	    <div class="mobile-menu-icon">
+	      <span></span>
+	      <span></span>
+	      <span></span>
+	    </div>
+
+		<!-- Centered link -->
+		<div class="topnav-centered">
+			<a href="index.html">JVS Printing Haus</a>
+		</div>
+
+		<div class="topnav-links">
+			<!-- Left-aligned links (default) -->
+			<div class="topnav-left">
+				<a href="index.html">Home</a>
+				<a href="about.html">About</a>
+			</div>
+			
+			<!-- Right-aligned links -->
+			<div class="topnav-right">
+				<a href="store.html">Shop</a>
+				<a href="login.html" id="loginLink">Register/Login</a>
+	            <div class="dropdown userProfile">
+			        <a><i class="fa fa-user"></i></a>
+			        <div class="dropdown-content">
+			            <a href="profile.html">Profile</a>
+			            <a href="#" id="logoutLink">Logout</a>
+			        </div>
+			    </div>
+			    <div class="dropdown userProfile">
+				    <div class="bell-container">
+				    	<a><i class="fa fa-bell"></i></a>
+				    	<div class="notification-count">0</div>
+					    <div class="dropdown-content">
+					        <ul id="notificationsList"></ul>
+					    </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="sidebar-mini col-2">
+        <div class="sidebar-item-mini horizontal">
+            <a href="dashboard.html" class="sidebar-link"><i class="fa fa-tachometer"></i><span> Dashboard</span></a>
+            <div class="sidebar-hover-container-mini">
+                <div class="sidebar-hover-content-mini">
+                    <p>Dashboard</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-item-mini">
+            <a href="orders.html" class="sidebar-link"><i class="fa fa-shopping-cart"></i><span> Orders</span></a>
+            <div class="sidebar-hover-container-mini">
+                <div class="sidebar-hover-content-mini">
+                    <p>Orders</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-item-mini active">
+            <a href="uploads.html" class="sidebar-link"><i class="fa fa-upload"></i><span> Upload Shirt/Color</span></a>
+            <div class="sidebar-hover-container-mini">
+                <div class="sidebar-hover-content-mini">
+                    <p>Upload Shirt/Color</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-item-mini">
+            <a href="history.html" class="sidebar-link"><i class="fa fa-history"></i><span> History</span></a>
+            <div class="sidebar-hover-container-mini">
+                <div class="sidebar-hover-content-mini">
+                    <p>History</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-item-mini">
+            <a href="statistics.html" class="sidebar-link"><i class="fa fa-bar-chart"></i><span> Statistics</span></a>
+            <div class="sidebar-hover-container-mini">
+                <div class="sidebar-hover-content-mini">
+                    <p>Statistics</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<div class="row primary-color">
+	  <div class="col-12 card-big">
+	  	<h2>Upload T-shirt Images</h2>
+
+	    <form method="post" enctype="multipart/form-data" id="uploadShirtForm">
+		    <div id="tshirtArea">
+	            <img id="tshirtImage" class="image-preview" alt="&nbsp;Please Upload Images" style="width: 40%;">
+		        
+		        <div id="viewButtons">
+					<div class="view-container">
+						<label>
+							<input type="radio" class="viewRadio" name="tShirtPreview" value="front" checked>
+							<img id="frontPreview" src="images/image-solid.svg" class="view-button" alt="Front Image Preview">
+							<p class="view-label">Front</p>
+						</label>
+					</div>
+
+					<div class="view-container">
+						<label>
+							<input type="radio" class="viewRadio" name="tShirtPreview" value="back">
+							<img id="backPreview" src="images/image-solid.svg" class="view-button" alt="Back Image Preview">
+							<p class="view-label">Back</p>
+						</label>
+					</div>
+
+					<div class="view-container">
+						<label>
+							<input type="radio" class="viewRadio" name="tShirtPreview" value="right">
+							<img id="rightPreview" src="images/image-solid.svg" class="view-button" alt="Right Image Preview">
+							<p class="view-label">Right</p>
+						</label>
+					</div>
+
+					<div class="view-container">
+						<label>
+							<input type="radio" class="viewRadio" name="tShirtPreview" value="left">
+							<img id="leftPreview" src="images/image-solid.svg" class="view-button" alt="Left Image Preview">
+							<p class="view-label">Left</p>
+						</label>
+					</div>
+				</div>
+	    	</div>
+
+	    	<h3 style="margin-bottom: 2px;"><b>Shirt Type:</b></h3>
+	    	<!-- Shirt Type -->
+	    	<select name="shirtType" id="shirtType" style="margin-bottom: 11px; font-size: 20px;">
+				<option value="color">Color</option>
+				<option value="design">Shirt Design</option>
+			</select>
+
+			<br>
+			<div class="image-container">
+				<label for="shirtColor">Shirt Color:</label>
+				<input type="text" class="primary-input" name="shirtColor" placeholder="Color of the Shirt : Optional">
+			</div>
+
+	    	<!-- Front Image -->
+			<div class="image-container">
+			    <label for="frontImage">Front Image:</label>
+			    <input type="file" name="frontImage" accept="image/*" class="image-input" data-preview="frontPreview" required>
+			</div>
+
+			<!-- Back Image -->
+			<div class="image-container">
+			    <label for="backImage">Back Image:</label>
+			    <input type="file" name="backImage" accept="image/*" class="image-input" data-preview="backPreview">
+			</div>
+
+			<!-- Right Image -->
+			<div class="image-container">
+			    <label for="rightImage">Right Image:</label>
+			    <input type="file" name="rightImage" accept="image/*" class="image-input" data-preview="rightPreview">
+			</div>
+
+			<!-- Left Image -->
+			<div class="image-container">
+			    <label for="leftImage">Left Image:</label>
+			    <input type="file" name="leftImage" accept="image/*" class="image-input" data-preview="leftPreview">
+			</div>
+
+	    	<br>
+	        
+	        <!-- Submit Button -->
+	        <input type="submit" value="Upload T-shirt Images" class="btn btn-3 secondary-color" id="uploadButton">
+	        <i class="fa fa-spinner fa-spin" style="font-size:24px;display:none;"></i>
+	    </form>
+
+	    <hr>
+	    <br>
+	    <form method="post" id="deleteShirtForm">
+	    	<fieldset>
+	    		<legend>Delete Color</legend>
+	    		<div class="col-4" id="colorPickerContainer" style="margin-top: 25px;">
+					<div id="startArea">
+						<h3>Color Picker</h3>
+						<h3 style="margin-bottom: 2px;"><b>Shirt Type:</b></h3>
+				    	<!-- Shirt Type -->
+				    	<select name="shirtTypeDelete" id="shirtTypeDelete" style="font-size: 20px;">
+							<option value="color">Color</option>
+							<option value="design">Shirt Design</option>
+						</select>
+						<span> : <span id="shirtColorName"></span></span>
+						<div id="colorPicker" style="margin-bottom: 11px;"></div>
+						<div id="pagination">
+						    <ul class="pagination">
+						        <li class="page-item"><a class="page-link" href="#" onclick="prevPage()">Previous</a></li>
+						        <li class="page-item"><a class="page-link" href="#" onclick="nextPage()">Next</a></li>
+						    </ul>
+						</div>
+
+						<input type="submit" value="Delete" class="btn btn-3" style="background-color: #d9534f;" id="deleteShirtButton">
+
+						<i class="fa fa-spinner fa-spin" id="deleteShirtLoading" style="font-size:24px;display:none;"></i>
+					</div>
+				</div>
+	    	</fieldset>
+	    </form>
+	    
+
+	    <div id="dialogContainer" title="Dialog"></div>
+	  </div>
+	</div>
+</body>
+</html>

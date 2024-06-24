@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JVS Printing Haus - Register</title>
+	<link rel="stylesheet" href="css/main.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<!-- jQuery library -->
+	<script src="js/jquery-3.6.4.min.js"></script>
+
+	<!-- jQuery UI library -->
+	<script src="js/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="css/jquery.ui.rotatable.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="js/main.js"></script>
+</head>
+<body>
+	<!-- Top navigation -->
+	<div class="topnav">
+		<!-- Hamburger menu icon for mobile -->
+	    <div class="mobile-menu-icon">
+	      <span></span>
+	      <span></span>
+	      <span></span>
+	    </div>
+
+		<!-- Centered link -->
+		<div class="topnav-centered">
+			<a href="index.html">JVS Printing Haus</a>
+		</div>
+
+		<div class="topnav-links">
+			<!-- Left-aligned links (default) -->
+			<div class="topnav-left">
+				<a href="index.html">Home</a>
+				<a href="about.html">About</a>
+			</div>
+			
+			<!-- Right-aligned links -->
+			<div class="topnav-right">
+				<a href="store.html">Shop</a>
+				<a href="login.html" id="loginLink">Register/Login</a>
+	            <div class="dropdown userProfile">
+			        <a><i class="fa fa-user"></i></a>
+			        <div class="dropdown-content">
+			            <a href="profile.html">Profile</a>
+			            <a href="#" id="logoutLink">Logout</a>
+			        </div>
+			    </div>
+			    <div class="dropdown userProfile">
+				    <div class="bell-container">
+				    	<a><i class="fa fa-bell"></i></a>
+				    	<div class="notification-count">0</div>
+					    <div class="dropdown-content">
+					        <ul id="notificationsList"></ul>
+					    </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12">
+			<div class="register-form-container">
+                <form method="post" class="register-form">
+                    <h2>Register</h2>
+                    <label for="firstNameInput">First Name:</label>
+                    <input type="text" name="firstName" id="firstNameInput" required>
+
+                    <label for="lastNameInput">Last Name:</label>
+                    <input type="text" name="lastName" id="lastNameInput" required>
+
+                    <label for="emailInput">Email:</label>
+                    <input type="email" name="email" id="emailInput" required>
+
+                    <label for="passwprdInput">Password:</label>
+                    <input type="password" name="password" id="passwordInput" required>
+
+                    <label for="confirmPasswprdInput">Confirm Password:</label>
+                    <input type="password" name="confirmPassword" id="confirmPasswordInput" required>
+
+                    <button type="submit" class="btn">Register</button>
+                </form>
+            </div>
+		</div>
+	</div>
+
+	<div id="dialogContainer" title="Dialog"></div>
+</body>
+</html>

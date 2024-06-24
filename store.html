@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JVS Printing Haus - Store</title>
+	<link rel="stylesheet" href="css/main.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<!-- jQuery library -->
+	<script src="js/jquery-3.6.4.min.js"></script>
+
+	<!-- jQuery UI library -->
+	<script src="js/jquery-ui.min.js"></script>
+
+	<script src="js/jquery.ui.rotatable.js"></script>
+	<script src="js/dom-to-image.min.js"></script>
+	<script src="js/html2canvas.min.js"></script>
+	<link rel="stylesheet" href="css/jquery.ui.rotatable.css">
+	<script src="js/main.js"></script>
+	<script src="js/dom-to-image-more.js"></script>
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+<body class="primary-color">
+	<!-- Top navigation -->
+	<div class="topnav">
+		<!-- Hamburger menu icon for mobile -->
+	    <div class="mobile-menu-icon">
+	      <span></span>
+	      <span></span>
+	      <span></span>
+	    </div>
+
+		<!-- Centered link -->
+		<div class="topnav-centered">
+			<a href="index.html">JVS Printing Haus</a>
+		</div>
+
+		<div class="topnav-links">
+			<!-- Left-aligned links (default) -->
+			<div class="topnav-left">
+				<a href="index.html">Home</a>
+				<a href="about.html">About</a>
+			</div>
+			
+			<!-- Right-aligned links -->
+			<div class="topnav-right">
+				<a href="store.html">Shop</a>
+				<a href="login.html" id="loginLink">Register/Login</a>
+	            <div class="dropdown userProfile">
+			        <a><i class="fa fa-user"></i></a>
+			        <div class="dropdown-content">
+			            <a href="profile.html">Profile</a>
+			            <a href="#" id="logoutLink">Logout</a>
+			        </div>
+			    </div>
+			    <div class="dropdown userProfile">
+				    <div class="bell-container">
+				    	<a><i class="fa fa-bell"></i></a>
+				    	<div class="notification-count">0</div>
+					    <div class="dropdown-content">
+					        <ul id="notificationsList"></ul>
+					    </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row primary-color" style="padding: 0; background-color: #fffcfa;">
+		<div class="col-3 leftContainer card-big" style="padding: 0;">
+			<div id="productList">
+				<i class="fa fa-spinner fa-spin" style="font-size:24px;"></i>
+			</div>
+		</div>
+
+		<div class="col-5 tshirtContainer">
+			<div id="tshirtArea">
+				<h1 class="pleaseWait">Please wait...</h1>
+				<div id="customImageArea">
+					<!--<img id="tshirtImage" class="image-preview" alt="Front Image Preview">-->
+
+					<div id="frontTshirtContainer">
+						<img id="tshirtImage" class="image-preview" alt="Tshirt Image">
+					</div>
+
+					<div id="backTshirtContainer">
+						<img id="tshirtImage" class="image-preview" alt="Tshirt Image">
+					</div>
+
+					<div id="rightTshirtContainer">
+						<img id="tshirtImage" class="image-preview" alt="Tshirt Image">
+					</div>
+
+					<div id="leftTshirtContainer">
+						<img id="tshirtImage" class="image-preview" alt="Tshirt Image">
+					</div>
+					
+				</div>
+
+				<div id="viewButtons">
+					<div class="view-container">
+						<label>
+							<input type="radio" class="viewRadio" name="tShirtPreview" value="front" checked>
+							<img id="frontPreview" src="images/image-solid.svg" class="view-button" alt="Front Image Preview" data-view="front">
+							<p class="view-label">Front</p>
+						</label>
+					</div>
+
+					<div class="view-container">
+						<label>
+							<input type="radio" class="viewRadio" name="tShirtPreview" value="back">
+							<img id="backPreview" src="images/image-solid.svg" class="view-button" alt="Back Image Preview" data-view="back">
+							<p class="view-label">Back</p>
+						</label>
+					</div>
+
+					<div class="view-container">
+						<label>
+							<input type="radio" class="viewRadio" name="tShirtPreview" value="right">
+							<img id="rightPreview" src="images/image-solid.svg" class="view-button" alt="Right Image Preview" data-view="right">
+							<p class="view-label">Right</p>
+						</label>
+					</div>
+
+					<div class="view-container">
+						<label>
+							<input type="radio" class="viewRadio" name="tShirtPreview" value="left">
+							<img id="leftPreview" src="images/image-solid.svg" class="view-button" alt="Left Image Preview" data-view="left">
+							<p class="view-label">Left</p>
+						</label>
+					</div>
+				</div>
+
+				<div>
+					<h3 id="addTextBtn" alt="Add Text">[ T ]</h3>
+					<!-- Font Style Dropdown List -->
+					<input type="checkbox" id="showEditorButtons" checked>Show Editor Buttons
+					<div id="textEditorArea">
+						<label for="fontStyleDropdown"></label>
+						<select id="fontStyleDropdown">
+						    <option value="Arial">Arial</option>
+						    <option value="Times New Roman">Times New Roman</option>
+						    <option value="Verdana">Verdana</option>
+						    <option value="Courier New">Courier New</option>
+						    <option value="Georgia">Georgia</option>
+						    <option value="Palatino Linotype">Palatino Linotype</option>
+						    <option value="Tahoma">Tahoma</option>
+						    <option value="Geneva">Geneva</option>
+						    <option value="Impact">Impact</option>
+						    <option value="Arial Black">Arial Black</option>
+						    <option value="Comic Sans MS">Comic Sans MS</option>
+						    <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+						    <option value="Trebuchet MS">Trebuchet MS</option>
+						    <option value="Courier">Courier</option>
+						    <option value="Lucida Console">Lucida Console</option>
+						    <option value="Helvetica">Helvetica</option>
+						    <option value="Book Antiqua">Book Antiqua</option>
+						    <option value="Arial Narrow">Arial Narrow</option>
+						    <option value="Garamond" selected="selected">Garamond</option>
+						    <option value="Century Gothic">Century Gothic</option>
+						    <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+						    <option value="Cambria">Cambria</option>
+						    <option value="Brush Script MT">Brush Script MT</option>
+						    <option value="Segoe UI">Segoe UI</option>
+						    <option value="Californian FB">Californian FB</option>
+						    <option value="Constantia">Constantia</option>
+						    <option value="Rockwell">Rockwell</option>
+						    <option value="Candara">Candara</option>
+						    <option value="Bodoni MT">Bodoni MT</option>
+						    <option value="Copperplate">Copperplate</option>
+						    <option value="MS Sans Serif">MS Sans Serif</option>
+						    <option value="Tw Cen MT">Tw Cen MT</option>
+						    <option value="Bell MT">Bell MT</option>
+						    <option value="Corbel">Corbel</option>
+						    <option value="Consolas">Consolas</option>
+						    <option value="Century Schoolbook">Century Schoolbook</option>
+						    <option value="Ebrima">Ebrima</option>
+						    <option value="Didot">Didot</option>
+						    <option value="Futura">Futura</option>
+						    <option value="Baskerville">Baskerville</option>
+						    <option value="Perpetua">Perpetua</option>
+						    <option value="OCR A Extended">OCR A Extended</option>
+						    <option value="Leelawadee UI">Leelawadee UI</option>
+						</select>
+
+						<div id="fontSizeWrapper">
+						    <input type="number" id="fontSizeInput" value="16" min="1">
+						    <div id="horizontalSlider">
+						        <div id="sliderHandle"></div>
+						    </div>
+						</div>
+
+					    <label for="fontColorPicker">Font Color:</label>
+    					<input type="color" id="fontColorPicker" value="#000000">
+
+						<br>
+
+						<!-- Text Decoration -->
+						<div>
+						    <input type="checkbox" id="boldCheckbox" class="textStyleCheckbox" data-style="bold"> <label for="boldCheckbox" style="font-weight: bold;">B</label>
+						    <input type="checkbox" id="italicCheckbox" class="textStyleCheckbox" data-style="italic"> <label for="italicCheckbox" style="font-style: italic;">I</label>
+						    <input type="checkbox" id="underlineCheckbox" class="textDecorationCheckbox" data-style="underline" style="text-decoration: underline;"> <label for="underlineCheckbox">U</label>
+						    <input type="checkbox" id="strikeCheckbox" class="textDecorationCheckbox" data-style="line-through" style="text-decoration: line-through;"> <label for="strikeCheckbox">S</label>
+						</div>
+
+						<!-- Font Variant Caps -->
+						<div>
+						    <input type="radio" class="fontCapsRadio" name="fontCapsGroup" id="normalCheckbox" data-style="normal" style="font-variant-caps: normal;" checked> <label for="normalCheckbox">T (Normal)</label>
+						    <input type="radio" class="fontCapsRadio" name="fontCapsGroup" id="smallCapsCheckbox" data-style="small-caps" style="font-variant-caps: small-caps;"> <label for="smallCapsCheckbox">Tt (Small Caps)</label>
+						    <input type="radio" class="fontCapsRadio" name="fontCapsGroup" id="allSmallCapsCheckbox" data-style="all-small-caps" style="font-variant-caps: all-small-caps;"> <label for="allSmallCapsCheckbox">TT (All Small Caps)</label>
+						    <input type="radio" class="fontCapsRadio" name="fontCapsGroup" id="petiteCapsCheckbox" data-style="petite-caps" style="font-variant-caps: petite-caps;"> <label for="petiteCapsCheckbox">Tt (Petite Caps)</label>
+						    <input type="radio" class="fontCapsRadio" name="fontCapsGroup" id="allPetiteCapsCheckbox" data-style="all-petite-caps" style="font-variant-caps: all-petite-caps;"> <label for="allPetiteCapsCheckbox">TT (All Petite Caps)</label>
+						    <input type="radio" class="fontCapsRadio" name="fontCapsGroup" id="unicaseCheckbox" data-style="unicase" style="font-variant-caps: unicase;"> <label for="unicaseCheckbox">T (Unicase)</label>
+						    <input type="radio" class="fontCapsRadio" name="fontCapsGroup" id="titlingCapsCheckbox" data-style="titling-caps" style="font-variant-caps: titling-caps;"> <label for="titlingCapsCheckbox">TT (Titling Caps)</label>
+						</div>
+
+						<div id="selectedTextLabel">Text Selected: none</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="customTshirtUploadArea">
+				<h2>Upload T-shirt Images</h2>
+
+			    <form method="post" enctype="multipart/form-data" id="uploadShirtForm">
+			    	<div id="tshirtArea">
+			            <img id="tshirtImage2" class="image-preview" alt="Front Image Preview">
+		
+
+					    <div id="viewButtons" class="viewButtons2">
+							<div class="view-container">
+								<label>
+									<input type="radio" class="viewRadio2" name="tShirtPreview" value="front" checked>
+									<img id="frontPreview2" class="view-button2" alt="Front Image Preview">
+									<p class="view-label">Front</p>
+								</label>
+							</div>
+
+							<div class="view-container">
+								<label>
+									<input type="radio" class="viewRadio2" name="tShirtPreview" value="back">
+									<img id="backPreview2" class="view-button2" alt="Back Image Preview">
+									<p class="view-label">Back</p>
+								</label>
+							</div>
+
+							<div class="view-container">
+								<label>
+									<input type="radio" class="viewRadio2" name="tShirtPreview" value="right">
+									<img id="rightPreview2" class="view-button2" alt="Right Image Preview">
+									<p class="view-label">Right</p>
+								</label>
+							</div>
+
+							<div class="view-container">
+								<label>
+									<input type="radio" class="viewRadio2" name="tShirtPreview" value="left">
+									<img id="leftPreview2" class="view-button2" alt="Left Image Preview">
+									<p class="view-label">Left</p>
+								</label>
+							</div>
+						</div>
+			    	</div>
+
+					<!-- Front Image -->
+					<div class="image-container">
+					    <label for="frontImage">Front Image:</label>
+					    <input type="file" name="frontImage" accept="image/*" class="image-input" data-preview="frontPreview2" required>
+					</div>
+
+					<!-- Back Image -->
+					<div class="image-container">
+					    <label for="backImage">Back Image:</label>
+					    <input type="file" name="backImage" accept="image/*" class="image-input" data-preview="backPreview2" required>
+					</div>
+
+					<!-- Right Image -->
+					<div class="image-container">
+					    <label for="rightImage">Right Image:</label>
+					    <input type="file" name="rightImage" accept="image/*" class="image-input" data-preview="rightPreview2" required>
+					</div>
+
+					<!-- Left Image -->
+					<div class="image-container">
+					    <label for="leftImage">Left Image:</label>
+					    <input type="file" name="leftImage" accept="image/*" class="image-input" data-preview="leftPreview2" required>
+					</div>
+
+			    	<br>
+
+			        <input type="button" value="Cancel" class="btn btn-3" id="cancelTshirtUpload">
+			    </form>
+			</div>
+
+
+			<!-- Custom Images -->
+		    <div class="image-container">
+		        <label for="customImages">Custom Images (High Quality):</label>
+		        <input type="file" name="customImages[]" id="customImagesInput" accept="image/*" class="image-input-2" multiple required>
+		    </div>
+
+		    <!-- Container to display selected custom images -->
+		    <div id="customImagesList" style="max-height: 100px; overflow-y: auto; border: 1px solid #ccc; padding: 5px; margin-top: 5px;">
+		        <!-- Selected file names will be displayed here -->
+		    </div>
+		</div>
+
+		<div class="col-4 card-big" id="colorPickerContainer" style="margin-top: 25px;">
+			<div id="startArea">
+				<h3>Color Picker</h3>
+				<h3 style="margin-bottom: 2px;"><b>Shirt Type:</b></h3>
+		    	<!-- Shirt Type -->
+		    	<select name="shirtType" id="shirtType" style="font-size: 20px;">
+					<option value="color">Color</option>
+					<option value="design">Shirt Design</option>
+				</select>
+				<span> : <span id="shirtColorName"></span></span>
+				<div id="colorPicker"></div>
+				<div id="pagination">
+				    <ul class="pagination">
+				        <li class="page-item"><a class="page-link" href="#" onclick="prevPage()">Previous</a></li>
+				        <li class="page-item"><a class="page-link" href="#" onclick="nextPage()">Next</a></li>
+				    </ul>
+				</div>
+				<i class="fa fa-spinner fa-spin" id="colorPickerLoading" style="font-size:24px;"></i>
+
+				<h2>Action Buttons</h2>
+				<div id="actionButtons">
+					<div class="row">
+						<div class="col-4">
+							<!-- <img id="designButton" src="images/icons/design.png"> -->
+							<input type="file" id="uploadInput" style="display: none;" accept="image/*">
+							<label for="uploadInput">
+								<img src="images/icons/upload.png" id="uploadImage" style="cursor: pointer;" alt="Upload custom image">					
+							</label>
+							<p>Upload Image</p>
+						</div>
+						<div class="col-3">
+							<span style="font-weight: bold; font-size: 30px; margin: 10px 24px;">Or</span>
+						</div>
+						<div class="col-5">
+							<img id="uploadTShirtImageButton" src="images/icons/t-shirt-upload-icon.png" alt="Upload your own T-shirt">
+							<p>Upload your own T-shirt design</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="extraHeight"></div>
+
+			 <!-- Type of Cloth Dropdown List -->
+		    <div class="form-group">
+		        <label for="clothType">Type of Cloth:</label>
+		        <select name="clothType" id="clothType" class="form-control">
+		            <!-- Populate with types of cloth -->
+		            <option value="pure cotton" data-value="300">Pure Cotton</option>
+		            <option value="50% cotton" data-value="230">50% Cotton</option>
+		            <option value="dri-FIT" data-value="100">Dri-FIT</option>
+		            <!-- Add more options as needed -->
+		        </select>
+		    </div>
+
+			<!-- Down Payment -->
+			<div class="form-group">
+			    <label for="downPayment">Down Payment (PHP):</label>
+			    <select name="downPayment" id="downPayment" class="form-control">
+			        <option value="" selected disabled>Select down payment amount</option>
+			        <option value="0">No Down Payment</option>
+			        <option value="10">PHP 10</option>
+			        <option value="20">PHP 20</option>
+			        <!-- Add more options as needed -->
+			    </select>
+			    <small class="text-muted">Optional</small>
+			</div>
+
+		    <!-- Adjustment Price 
+		    <div class="form-group">
+		        <label for="adjustmentPrice">Adjustment Price:</label>
+		        <input type="text" name="adjustmentPrice" id="adjustmentPrice" class="form-control" placeholder="Enter adjustment price">
+		    </div>
+		    -->
+
+			<button id="chooseSizeButton" class="btn">Choose Size & Quantity <i class='fa fa-gear'></i></button>
+
+			    
+		</div>
+
+
+		<div class="col-4 card-big" id="chooseSizeContainer">
+		    <h2><i class='fa fa-gears'></i> Select Size:</h2>
+		    <hr>
+		    <div class="size-picker">
+		        <div class="size-row">
+		            <div class="size-label" data-value="Small" data-price="250">S</div>
+		            <div class="space"></div>
+		            <div class="quantity-controls">
+		                <button class="quantity-control" data-action="decrease">-</button>
+		                <span class="quantity">0</span>
+		                <button class="quantity-control" data-action="increase">+</button>
+		            </div>
+		        </div>
+		        <div class="size-row">
+		            <div class="size-label" data-value="Medium" data-price="250">M</div>
+		            <div class="quantity-controls">
+		                <button class="quantity-control" data-action="decrease">-</button>
+		                <span class="quantity">0</span>
+		                <button class="quantity-control" data-action="increase">+</button>
+		            </div>
+		        </div>
+		        <div class="size-row">
+		            <div class="size-label" data-value="Large" data-price="250">L</div>
+		            <div class="quantity-controls">
+		                <button class="quantity-control" data-action="decrease">-</button>
+		                <span class="quantity">0</span>
+		                <button class="quantity-control" data-action="increase">+</button>
+		            </div>
+		        </div>
+		        <div class="size-row">
+		            <div class="size-label" data-value="Extra Large" data-price="250">XL</div>
+		            <div class="quantity-controls">
+		                <button class="quantity-control" data-action="decrease">-</button>
+		                <span class="quantity">0</span>
+		                <button class="quantity-control" data-action="increase">+</button>
+		            </div>
+		        </div>
+		        <div class="size-row">
+		            <div class="size-label" data-value="Extra Large 2" data-price="250">2XL</div>
+		            <div class="quantity-controls">
+		                <button class="quantity-control" data-action="decrease">-</button>
+		                <span class="quantity">0</span>
+		                <button class="quantity-control" data-action="increase">+</button>
+		            </div>
+		        </div>
+		        <div class="size-row">
+		            <div class="size-label" data-value="Extra Large 3" data-price="300">3XL</div>
+		            <div class="quantity-controls">
+		                <button class="quantity-control" data-action="decrease">-</button>
+		                <span class="quantity">0</span>
+		                <button class="quantity-control" data-action="increase">+</button>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="totalArea">
+		    	<div class="total-row">
+		    	<p><span id="sizeCount">0</span> item(s) selected</p>
+		    	<div class="space2"></div>
+		    	<p id="seeDetails">Details</p>
+			    </div>
+			    <div class="detailsArea">
+			    	<h2>Details</h2>
+				    <table>
+				        <thead>
+				            <tr>
+				                <th>Size</th>
+				                <th>Subtotal</th>
+				                <th>Total Amount</th>
+				            </tr>
+				        </thead>
+				        <tbody id="detailsTableBody">
+				            <!-- Size details will be added dynamically here -->
+				        </tbody>
+				    </table>
+			    </div>
+			    <div class="otherCharges total-row">
+					<h3 data-price="50">Color:</h3>
+					<div class="space2"></div>
+					<h3>&#8369;50</h3>
+				</div>
+				<div class="otherCharges total-row">
+					<h3 data-price="0" id="designPrice">Design:</h3>
+					<div class="space2"></div>
+					<h3>&#8369;<span id="designPriceContainer"></span></h3>
+				</div>
+				<div class="otherCharges total-row">
+					<h3 data-price="0" id="clothTypePrice">Type (<span id="clothTypeChose"></span>):</h3>
+					<div class="space2"></div>
+					<h3>&#8369;<span id="clothTypeAmount">50</span></h3>
+				</div>
+			    <div class="total-row">
+			    	<h2>Total:</h2>
+			    	<div class="space2"></div>
+			    	<h2>&#8369;<span id="totalSum">0</span></h2>
+			    </div>
+		    </div>
+		    <button id="addToCart" class="btn">Add to cart <i class='fa fa-cart-plus'></i></button>
+		    <div class="col-12">
+		    	<button id="goBack" data-direction="colorPickerContainer" class="btn"><i class='fa fa-arrow-left'></i> Back</button>
+		    </div>
+		</div>
+		<div id="finalArea">
+			<div class="col-12 card-big" id="totalFinal">
+
+			</div>
+			<div class="col-9" id="tShirtImageFinal">
+			</div>
+			<div class="col-6" id="goBackFinal">
+				<button id="goBack" class="btn"><i class='fa fa-arrow-left'></i> Back</button>
+			</div>
+			<div class="col-6" id="goBackStore">
+				<button id="goBack" class="btn"><i class='fa fa-arrow-left'></i> Back</button>
+			</div>
+			<div class="col-6" id="placeOrder">
+				<button id="goBack" class="btn">Place Order <i class='fa fa-cart-arrow-down'></i></button>
+				<div id="orderForm" style="display: none;">
+				    <!-- Hidden input fields to store image data -->
+				    <input type="hidden" name="frontImage" id="frontImageInput">
+				    <input type="hidden" name="backImage" id="backImageInput">
+				    <input type="hidden" name="rightImage" id="rightImageInput">
+				    <input type="hidden" name="leftImage" id="leftImageInput">
+				</div>
+				<i class="fa fa-spinner fa-spin" style="font-size:24px;"></i>
+				<div id="placeOrderStatus"></div>
+			</div>
+		</div>
+		
+		<div id="dialogContainer" title="Dialog"></div>
+		<div id="dialogModalContainer" title="Dialog"></div>
+	</div>
+
+</body>
+</html>

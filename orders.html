@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JVS Printing Haus - Orders</title>
+    <link rel="stylesheet" href="css/main.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<!-- jQuery library -->
+	<script src="js/jquery-3.6.4.min.js"></script>
+
+	<!-- jQuery UI library -->
+	<script src="js/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="css/jquery.ui.rotatable.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="js/main.js"></script>
+</head>
+
+<body style="background-color: #f6f4f1;">
+    <!-- Top navigation -->
+	<div class="topnav">
+		<!-- Hamburger menu icon for mobile -->
+	    <div class="mobile-menu-icon">
+	      <span></span>
+	      <span></span>
+	      <span></span>
+	    </div>
+
+		<!-- Centered link -->
+		<div class="topnav-centered">
+			<a href="index.html">JVS Printing Haus</a>
+		</div>
+
+		<div class="topnav-links">
+			<!-- Left-aligned links (default) -->
+			<div class="topnav-left">
+				<a href="index.html">Home</a>
+				<a href="about.html">About</a>
+			</div>
+			
+			<!-- Right-aligned links -->
+			<div class="topnav-right">
+				<a href="store.html">Shop</a>
+				<a href="login.html" id="loginLink">Register/Login</a>
+	            <div class="dropdown userProfile">
+			        <a><i class="fa fa-user"></i></a>
+			        <div class="dropdown-content">
+			            <a href="profile.html">Profile</a>
+			            <a href="#" id="logoutLink">Logout</a>
+			        </div>
+			    </div>
+			    <div class="dropdown userProfile">
+				    <div class="bell-container">
+				    	<a><i class="fa fa-bell"></i></a>
+				    	<div class="notification-count">0</div>
+					    <div class="dropdown-content">
+					        <ul id="notificationsList"></ul>
+					    </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div class="sidebar-mini col-2">
+        <div class="sidebar-item-mini">
+            <a href="dashboard.html" class="sidebar-link"><i class="fa fa-tachometer"></i><span> Dashboard</span></a>
+            <div class="sidebar-hover-container-mini">
+                <div class="sidebar-hover-content-mini">
+                    <p>Dashboard</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-item-mini active2">
+            <a href="orders.html" class="sidebar-link"><i class="fa fa-shopping-cart"></i><span> Orders</span></a>
+            <div class="sidebar-hover-container-mini">
+                <div class="sidebar-hover-content-mini">
+                    <p>Orders</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-item-mini">
+            <a href="uploads.html" class="sidebar-link"><i class="fa fa-upload"></i><span> Upload Shirt/Color</span></a>
+            <div class="sidebar-hover-container-mini">
+                <div class="sidebar-hover-content-mini">
+                    <p>Upload Shirt/Color</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-item-mini">
+            <a href="history.html" class="sidebar-link"><i class="fa fa-history"></i><span> History</span></a>
+            <div class="sidebar-hover-container-mini">
+                <div class="sidebar-hover-content-mini">
+                    <p>History</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-item-mini">
+            <a href="statistics.html" class="sidebar-link"><i class="fa fa-bar-chart"></i><span> Statistics</span></a>
+            <div class="sidebar-hover-container-mini">
+                <div class="sidebar-hover-content-mini">
+                    <p>Statistics</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Card container for the order area -->
+    <div class="row primary-color" style="display: flex; align-items: stretch;">
+    	<div class="col-3 leftContainer" id="orderList">
+    		<div class="search-container">
+		        <input type="text" id="searchInput" placeholder="Search Order References">
+		    </div>
+		    <ol id="orderReferencesList"></ol>
+		    <br>
+		    <div style="margin-top: 100px;"></div>
+		    <div id="paginationButtonsContainer">
+			    <div id="paginationButtons"></div>
+			    <button onclick="prevPage()" class="btn" style="font-size:18px; padding:5px;">Previous</button>
+			    <button onclick="nextPage()" class="btn" style="font-size:18px; padding:5px;">Next</button>
+			</div>
+	    </div>
+	    <div class="col-9 rightContainer profile-container">
+	    	<div class="container-horizontal">
+			    <div class="horizontal-div">
+			        <div class="horizontal-box">
+			            <a href="orders.html" id="all-tab" class="status-link active"><i class="fa fa-tasks"></i><span> All</span></a>			        
+			        </div>
+			        <div class="horizontal-box">
+			            <a href="orders.html?status=pending" id="pending-tab" class="status-link"><i class="fa fa-clock-o"></i><span> Pending</span></a>
+			        </div>
+			        <div class="horizontal-box">
+			            <a href="orders.html?status=processing" id="processing-tab" class="status-link"><i class="fa fa-cog"></i><span> Processing</span></a>
+			        </div>
+			        <div class="horizontal-box">
+			            <a href="orders.html?status=shipped" id="shipped-tab" class="status-link"><i class="fa fa-truck"></i><span> Shipped</span></a>
+			        </div>
+			        <div class="horizontal-box">
+			            <a href="orders.html?status=delivered" id="delivered-tab" class="status-link"><i class="fa fa-check-circle"></i><span> Delivered</span></a>
+			        </div>
+			        <div class="horizontal-box">
+			            <a href="orders.html?status=cancelled" id="cancelled-tab" class="status-link"><i class="fa fa-times-circle"></i><span> Cancelled</span></a>
+			        </div>
+			    </div>
+			</div>
+
+	        <div class="nav-buttons">
+	            <button id="prevButton" onclick="prevOrder()">&#8249;</button>
+	            <div id="ordersArea" class="order-card"><i class="fa fa-spinner fa-spin" style="font-size:60px;text-align:center;"></i></div>
+	            <button id="nextButton" onclick="nextOrder()">&#8250;</button>
+	        </div>
+	    </div>
+    </div>
+
+    <div id="dialogContainer" title="Dialog"></div>
+</body>
+
+</html>

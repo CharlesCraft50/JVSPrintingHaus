@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>JVS Printing Haus</title>
+    <link rel="stylesheet" href="css/main.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<!-- jQuery library -->
+	<script src="js/jquery-3.6.4.min.js"></script>
+
+	<!-- jQuery UI library -->
+	<script src="js/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="css/jquery.ui.rotatable.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="js/main.js"></script>
+
+ <style>
+
+    .options {
+        display: flex;
+        justify-content: center; /* Center content horizontally */
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+    .content {
+        margin-top: 20px;
+    }
+
+    .form-group {
+	    margin-bottom: 20px;
+	}
+
+	label {
+	    display: block;
+	    font-weight: bold;
+	    margin-bottom: 5px;
+	}
+
+	input {
+	    width: 100%;
+	    padding: 8px;
+	    box-sizing: border-box;
+	    margin-top: 5px;
+	    margin-bottom: 10px;
+	    border: 1px solid #ccc;
+	    border-radius: 4px;
+	}
+
+
+	.settings-content h3 {
+	    color: #595045;
+	}
+
+	.edit-btn {
+        cursor: pointer;
+        color: #007BFF;
+        text-decoration: underline;
+        border: none;
+        background: none;
+        transition: 0.3s;
+    }
+
+    .edit-btn:hover {
+    	color: #0357B1;
+    }
+
+    .edit-fields {
+        display: none;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .save-btn {
+        margin-top: 10px;
+    }
+
+    .save-btn,
+    .edit-fields input {
+        display: block;
+        margin-top: 5px;
+    }
+
+    .edit-dropdown-section {
+    	padding: 20px;
+	    background-color: #fff;
+	    border: 1px solid #ccc;
+	    border-radius: 8px;
+	    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	    margin-top: 20px;
+    }
+</style>
+</head>
+
+<body class="primary-color">
+    <!-- Top navigation -->
+	<div class="topnav">
+		<!-- Hamburger menu icon for mobile -->
+	    <div class="mobile-menu-icon">
+	      <span></span>
+	      <span></span>
+	      <span></span>
+	    </div>
+
+		<!-- Centered link -->
+		<div class="topnav-centered">
+			<a href="index.html">JVS Printing Haus</a>
+		</div>
+
+		<div class="topnav-links">
+			<!-- Left-aligned links (default) -->
+			<div class="topnav-left">
+				<a href="index.html">Home</a>
+				<a href="about.html">About</a>
+			</div>
+			
+			<!-- Right-aligned links -->
+			<div class="topnav-right">
+				<a href="store.html">Shop</a>
+				<a href="login.html" id="loginLink">Register/Login</a>
+	            <div class="dropdown userProfile">
+			        <a><i class="fa fa-user"></i></a>
+			        <div class="dropdown-content">
+			            <a href="profile.html">Profile</a>
+			            <a href="#" id="logoutLink">Logout</a>
+			        </div>
+			    </div>
+			    <div class="dropdown userProfile">
+				    <div class="bell-container">
+				    	<a><i class="fa fa-bell"></i></a>
+				    	<div class="notification-count">0</div>
+					    <div class="dropdown-content">
+					        <ul id="notificationsList"></ul>
+					    </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- <div class="sidebar-mini col-2">
+	    <div class="sidebar-item-mini">
+	        <a href="profile.html" id="all-tab" class="sidebar-link"><i class="fa fa-tasks"></i><span> All</span></a>
+	        <div class="sidebar-hover-container-mini">
+	            <div class="sidebar-hover-content-mini">
+	                <p>All</p>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="sidebar-item-mini">
+	        <a href="profile.html?status=pending" id="pending-tab" class="sidebar-link"><i class="fa fa-clock-o"></i><span> Pending</span></a>
+	        <div class="sidebar-hover-container-mini">
+	            <div class="sidebar-hover-content-mini">
+	                <p>Pending</p>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="sidebar-item-mini">
+	        <a href="profile.html?status=processing" id="processing-tab" class="sidebar-link"><i class="fa fa-cog"></i><span> Processing</span></a>
+	        <div class="sidebar-hover-container-mini">
+	            <div class="sidebar-hover-content-mini">
+	                <p>Processing</p>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="sidebar-item-mini">
+	        <a href="profile.html?status=shipped" id="shipped-tab" class="sidebar-link"><i class="fa fa-truck"></i><span> Shipped</span></a>
+	        <div class="sidebar-hover-container-mini">
+	            <div class="sidebar-hover-content-mini">
+	                <p>Shipped</p>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="sidebar-item-mini">
+	        <a href="profile.html?status=delivered" id="delivered-tab" class="sidebar-link"><i class="fa fa-check-circle"></i><span> Delivered</span></a>
+	        <div class="sidebar-hover-container-mini">
+	            <div class="sidebar-hover-content-mini">
+	                <p>Delivered</p>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="sidebar-item-mini">
+	        <a href="profile.html?status=cancelled" id="cancelled-tab" class="sidebar-link"><i class="fa fa-times-circle"></i><span> Cancelled</span></a>
+	        <div class="sidebar-hover-container-mini">
+	            <div class="sidebar-hover-content-mini">
+	                <p>Cancelled</p>
+	            </div>
+	        </div>
+	    </div>
+	</div> -->
+
+    <div class="row primary-color">
+        <div class="col-12 profile-container big-card">
+        	<div class="container-horizontal col-12">
+			    <div class="horizontal-div">
+			        <div class="horizontal-box">
+			            <a href="profile.html" id="all-tab" class="status-link active"><i class="fa fa-tasks"></i><span> All</span></a>			        
+			        </div>
+			        <div class="horizontal-box">
+			            <a href="profile.html?status=pending" id="pending-tab" class="status-link"><i class="fa fa-clock-o"></i><span> Pending</span></a>
+			        </div>
+			        <div class="horizontal-box">
+			            <a href="profile.html?status=processing" id="processing-tab" class="status-link"><i class="fa fa-cog"></i><span> Processing</span></a>
+			        </div>
+			        <div class="horizontal-box">
+			            <a href="profile.html?status=shipped" id="shipped-tab" class="status-link"><i class="fa fa-truck"></i><span> Shipped</span></a>
+			        </div>
+			        <div class="horizontal-box">
+			            <a href="profile.html?status=delivered" id="delivered-tab" class="status-link"><i class="fa fa-check-circle"></i><span> Delivered</span></a>
+			        </div>
+			        <div class="horizontal-box">
+			            <a href="profile.html?status=cancelled" id="cancelled-tab" class="status-link"><i class="fa fa-times-circle"></i><span> Cancelled</span></a>
+			        </div>
+			    </div>
+			</div>
+            <h3>First Name: <span id="firstNameLabel"></span></h3>
+            <h3>Last Name: <span id="lastNameLabel"></span></h3>
+
+            <div class="options">
+                <div class="option active" data-content="orders">Orders</div>
+                <div class="option" data-content="settings">Settings</div>
+            </div>
+
+            <div class="content">
+                <div class="orders-content">
+                	<!-- Orders Area -->
+                	<div class="nav-buttons">
+			            <button id="prevButton" onclick="prevOrder()">&#8249;</button>
+			            <div id="ordersArea" class="order-card">
+			            	<i class="fa fa-spinner fa-spin" style="font-size:60px;text-align:center;"></i>
+			            </div>
+			            <button id="nextButton" onclick="nextOrder()">&#8250;</button>
+			        </div>
+                </div>
+
+                <div class="settings-content" style="display: none;">
+				    <div class="contact-section edit-dropdown-section">
+					    <h3>Contact Name & Number<button class="edit-btn" onclick="toggleEdit('contact')">[Edit]</button></h3>
+					    
+
+					    <form id="contactEditFields" class="contact-edit-form edit-fields">
+					        <label for="firstNameInput">First Name:</label>
+					        <input type="text" id="firstNameInput" name="firstNameInput" value="" required />
+
+					        <label for="lastNameInput">Last Name:</label>
+					        <input type="text" id="lastNameInput" name="lastNameInput" value="" required />
+
+					        <label for="contactNumberInput">Contact Number Or Email:</label>
+					        <input type="number" id="contactNumberInput" name="contactNumberInput" value="" />
+
+					        <input type="submit" class="save-btn btn" id="saveContact" value="Save">
+					    </form>
+					</div>
+
+					<div class="address-section edit-dropdown-section">
+					    <h3>Address<button class="edit-btn" onclick="toggleEdit('address')">[Edit]</button></h3>
+					    
+
+					    <form id="addressEditFields" class="address-edit-form edit-fields" method="post">
+					        <label for="addressInput">Address:</label>
+					        <input type="text" id="addressInput" name="addressInput" value="" required />
+
+					        <label for="streetBuildingInput">Street Name, Building/House No. <i>(Optional)</i>:</label>
+					        <input type="text" id="streetBuildingInput" name="streetBuildingInput" value="" />
+
+					        <label for="zipCodeInput">ZIP Code:</label>
+					        <input type="number" id="zipCodeInput" name="zipCodeInput" value="" required />
+
+					        <input type="submit" class="save-btn btn" id="saveAddress" value="submit">
+					    </form>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dialogContainer" title="Dialog"></div>
+</body>
+
+</html>
