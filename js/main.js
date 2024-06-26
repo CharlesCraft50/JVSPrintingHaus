@@ -7,7 +7,7 @@ function checkLoginStatus() {
     $.ajax({
         type: "GET",
         url: "php-api/checkLoginStatus.php",
-        dataType: "json",  // Specify that the response should be treated as JSON
+        dataType: "json",
         success: function (response) {
             if (response.status === "loggedIn") {
                 // If logged in, show logout button and hide Register/Login link
@@ -168,7 +168,6 @@ function getRemarksProfile(order, orderUserId) {
                                 var userId = orderUserId;
                                 var adminUserId = 1;
 
-                                // Assuming formData is defined and contains necessary data for InsertRemarks.php
                                 var formData = new FormData();
                                 formData.append('replyText', replyText);
                                 formData.append('remarkId', remarkId);
@@ -372,27 +371,21 @@ function openDialog(html, title, showTitle, color, autoClose, cancelText) {
 }
 
 function GetUserDetails(fullNameCallback, firstNameCallback, lastNameCallback, contactNumberCallback, addressCallback) {
-    // Make an AJAX request
     $.ajax({
         type: 'GET',
         url: 'php-api/GetUserDetails.php',
         dataType: 'json',
         success: function (data) {
-            // Check if the response contains an error
             if ('error' in data) {
                 console.error('Error:', data.error);
             } else {
-                // Access the retrieved data
                 const firstName = data.FirstName;
                 const lastName = data.LastName;
                 const contactNumber = data.ContactNumber;
-                // Check if the address field is not empty
                 let address;
                 if (data.Address) {
-                    // Parse the address JSON string into an object
                     address = JSON.parse(data.Address);
                 } else {
-                    // Handle empty address
                     address = null;
                 }
 
@@ -432,14 +425,12 @@ function GetUserDetails(fullNameCallback, firstNameCallback, lastNameCallback, c
 }
 
 function GetUserDetailsById(userId, fullNameCallback, firstNameCallback, lastNameCallback, contactNumberCallback) {
-    // Make an AJAX request
     $.ajax({
         type: 'GET',
         url: 'php-api/GetUserDetailsById.php',
         data: { userId: userId },
         dataType: 'json',
         success: function (data) {
-            // Check if the response contains an error
             if ('error' in data) {
                 console.error('Error:', data.error);
             } else {
@@ -734,7 +725,7 @@ if(htmlPage == "statistics.html") {
             type: "GET",
             url: "php-api/ShirtDataByType.php",
             data: { shirtType: "design" },
-            dataType: "json", // Expect JSON response
+            dataType: "json", 
             success: function(response) {
                 if (response && response.length > 0) {
                     var itemsToShow = 5;
@@ -1779,7 +1770,6 @@ if(htmlPage == "statistics.html") {
 
         // Function to calculate contrasting background color based on font color
         function calculateContrastBackgroundColor(fontColor) {
-            // Assuming fontColor is in hexadecimal format
             fontColor = fontColor.replace(/^#/, '');
 
             // Parse the hex value to RGB
@@ -2014,59 +2004,59 @@ if(htmlPage == "statistics.html") {
 
 
     function updateAddress(addressData, successCallback, errorCallback) {
-        // Prepare the data to be sent as JSON
+        
         var jsonData = JSON.stringify(addressData);
 
-        // Make an AJAX request
+        
         $.ajax({
             type: 'POST',
             url: 'php-api/UpdateAddress.php',
             data: jsonData,
-            contentType: 'application/json', // Set content type to JSON
+            contentType: 'application/json', 
             dataType: 'json',
             success: function (data) {
                 if (data.status === 'success') {
-                    // Execute the success callback
+                    
                     successCallback(data.message);
                 } else {
-                    // Execute the error callback
+                    
                     errorCallback(data.message);
                 }
             },
             error: function (xhr, status, error) {
-                // Log detailed information about the error
+                
                 console.error("XHR:", xhr);
                 console.error("Status:", status);
                 console.error("Error:", error);
 
-                // Execute the error callback
+                
                 errorCallback('AJAX Error ' + error);
             }
         });
     }
 
     function updateContactNumber(contactNumberData, successCallback, errorCallback) {
-        // Make an AJAX request
+        
         $.ajax({
             type: 'POST',
             url: 'php-api/UpdateContactNumber.php',
             data: { contactNumber: contactNumberData },
             success: function (data) {
                 if (data.status === 'success') {
-                    // Execute the success callback
+                    
                     successCallback(data.message);
                 } else {
-                    // Execute the error callback
+                    
                     errorCallback(data.message);
                 }
             },
             error: function (xhr, status, error) {
-                // Log detailed information about the error
+                
                 console.error("XHR:", xhr);
                 console.error("Status:", status);
                 console.error("Error:", error);
 
-                // Execute the error callback
+                
                 errorCallback('AJAX Error ' + error);
             }
         });
@@ -2094,7 +2084,7 @@ if(htmlPage == "statistics.html") {
             type: "GET",
             url: "php-api/ShirtDataByType.php",
             data: { shirtType: $('#shirtType').val() },
-            dataType: "json", // Expect JSON response
+            dataType: "json", 
             success: function(response) {
                 $('#colorPickerLoading').hide();
 
@@ -2232,7 +2222,7 @@ if(htmlPage == "statistics.html") {
         });
 
         $('#uploadShirtForm').submit(function (event) {
-            event.preventDefault(); // Prevent the default form submission
+            event.preventDefault(); 
 
             $('.fa-spinner').show();
 
@@ -2312,7 +2302,7 @@ if(htmlPage == "statistics.html") {
         // Color/design Deletion
 
         $('#deleteShirtForm').submit(function (event) {
-            event.preventDefault(); // Prevent the default form submission
+            event.preventDefault(); 
 
             var isConfirmed = confirm("Are you sure you want to delete the " + $('#shirtTypeDelete').val() + "?");
 
@@ -2618,6 +2608,18 @@ if(htmlPage == "statistics.html") {
             }
         });
 
+        $(document).on('change', '.statusDropdown', function () {
+            if($('.statusDropdown :selected').val() != 'Pending') {
+                $('.downPaymentInput').prop('disabled', true);
+                $('.adjustmentPriceInput').prop('disabled', true);
+                $('#addAdjustmentCheckbox').prop('disabled', true);
+            } else {
+                $('.downPaymentInput').prop('disabled', false);
+                $('.adjustmentPriceInput').prop('disabled', false);
+                $('#addAdjustmentCheckbox').prop('disabled', false);
+            }
+        });
+
         window.updateOrder = function (order) {
             $('.fa-spinner').show();
 
@@ -2881,24 +2883,25 @@ if(htmlPage == "statistics.html") {
             "<option value='Shipped'" + (order.OrderStatus === 'Shipped' ? ' selected' : '') + ">Shipped</option>" +
             "<option value='Delivered'" + (order.OrderStatus === 'Delivered' ? ' selected' : '') + ">Delivered</option>" +
             "<option value='Cancelled'" + (order.OrderStatus === 'Cancelled' ? ' selected' : '') + ">Cancelled</option>" +
-            "<option value='Deleted'" + (order.OrderStatus === 'Deleted' ? ' selected' : '') + ">Deleted</option>" +
+            /*"<option value='Deleted'" + (order.OrderStatus === 'Deleted' ? ' selected' : '') + ">Deleted</option>" +*/
             "</select>" +
             "</div>";
 
+        var downPaymentDisabled = (order.OrderStatus != 'Pending') ? ' disabled' : '';
 
         var downPaymentInput = "<div class='otherCharges total-row'>" +
             "<h3>Down Payment:</h3>" +
             "<div class='space2'></div>" +
-            "<input type='number' id='downPayment_" + order.OrderId + "' class='downPaymentInput' value='" + order.DownPayment + "'>" +
+            "<input type='number' id='downPayment_" + order.OrderId + "' class='downPaymentInput' value='" + order.DownPayment + "'" + downPaymentDisabled + ">" +
             "</div>";
 
-        var addAdjustmentCheckbox = "<input type='checkbox' id='addAdjustmentCheckbox'" + (order.AdjustmentType === 'Added' ? ' checked' : '') + ">";
+        var addAdjustmentCheckbox = "<input type='checkbox' id='addAdjustmentCheckbox'" + (order.AdjustmentType === 'Added' ? ' checked' : '') + "" + downPaymentDisabled + ">";
         var adjustmentPriceInput = "<div class='otherCharges total-row'>" +
             "<h3>Adjustment Price:</h3>" +
             "<div class='space2'></div>" +
             addAdjustmentCheckbox +
             "<div class='adjustment-input-container'>" +
-            "<input type='number' id='adjustmentPrice_" + order.OrderId + "' class='adjustmentPriceInput' value='" + order.AdjustmentPrice + "'>" +
+            "<input type='number' id='adjustmentPrice_" + order.OrderId + "' class='adjustmentPriceInput' value='" + order.AdjustmentPrice + "'" + downPaymentDisabled + ">" +
             "<span id='adjustmentLabel_" + order.OrderId + "' style='margin-top:10px;'>(" + order.AdjustmentType + ")</span>" +
             "</div>" +
             "</div>";
@@ -2928,6 +2931,7 @@ if(htmlPage == "statistics.html") {
             "<div style='border: 1px solid gray; padding: 2px 18px; background-color: " + getBackgroundColor(order.OrderStatus) + ";'><h2>" + order.OrderStatus + "</h2></div>" +
             "<p>Order Reference: <span id='referenceKey'>" + order.ReferenceKey + "</span></p>" +
             "<p><span id='orderId'>" + order.OrderId + "</span></p>" +
+            "<p style='display:none;'><span id='userId'>" + order.UserId + "</span></p>" +
             "<p>Order Date: " + orderDateDisplay + "</p>" +
             "<p>Total Amount: &#8369;" + order.TotalAmount + "</p>" +
             "<p>Contact Name: <span id='nameId'></span></p>" +
@@ -3111,9 +3115,8 @@ if(htmlPage == "statistics.html") {
                                 } else {
                                     var remarkId = $(this).closest('.remarks-item').data('remarkId');
                                     var orderReferenceKey = order.ReferenceKey;
-                                    var userId = orderUserId;
+                                    var userId = $('#userId').text();
 
-                                    // Assuming formData is defined and contains necessary data for InsertRemarks.php
                                     var formData = new FormData();
                                     formData.append('replyText', replyText);
                                     formData.append('remarkId', remarkId);
@@ -3324,26 +3327,26 @@ if(htmlPage == "statistics.html") {
     function getBackgroundColor(status) {
         switch (status) {
             case 'Pending':
-                return '#ffffff'; // Default background color for Pending
+                return '#ffffff';
             case 'Processing':
-                return '#e6e6e6'; // Example background color for Processing
+                return '#e6e6e6';
             case 'Shipped':
-                return '#c1ecc1'; // Example background color for Shipped
+                return '#c1ecc1';
             case 'Delivered':
-                return '#b3ffb3'; // Example background color for Delivered
+                return '#b3ffb3';
             case 'Cancelled':
-                return '#ffcccc'; // Example background color for Cancelled
+                return '#ffcccc';
             case 'Deleted':
-                return '#ffc2c2'; // Light red background color for Deleted
+                return '#ffc2c2';
             default:
-                return '#ffffff'; // Default background color for other statuses
+                return '#ffffff';
         }
     }
 
     function getCustomImages(orderId) {
         $.ajax({
             type: "POST",
-            url: "php-api/GetCustomImages.php", // Update the URL to your PHP script
+            url: "php-api/GetCustomImages.php", 
             data: { orderId: orderId },
             dataType: "json",
             success: function (response) {
@@ -3356,7 +3359,7 @@ if(htmlPage == "statistics.html") {
                         var imageUrl = response.data[i].ImageUrl;
                         var imagePrice = parseInt(response.data[i].ImagePrice);
 
-                        // Ensure 'ImageUrl' property exists before using it
+                        
                         if (imageUrl) {
                             var fileName = imageUrl.substring(imageUrl.lastIndexOf('/') + 1);
 
@@ -3548,7 +3551,7 @@ if(htmlPage == "statistics.html") {
                 "<h3>" + order.AdjustmentPrice + " <span id='adjustmentLabel_" + order.OrderId + "'>(" + order.AdjustmentType + ")</span></h3>" +
                 "</div>";
 
-            var cancelButton = (order.OrderStatus !== 'Cancelled') ? "<button class='btn' id='cancelOrderBtn'>Cancel Order</button>" : ""; // Add an Cancel button
+            var cancelButton = (order.OrderStatus !== 'Cancelled' && order.OrderStatus == 'Pending') ? "<button class='btn' id='cancelOrderBtn'>Cancel Order</button>" : ""; // Add an Cancel button
 
             var printButton = "<button class='btn' onclick='printOrder()' id='printOrderBtn'><i class='fa fa-print'></i></button>";
 
@@ -3594,7 +3597,7 @@ if(htmlPage == "statistics.html") {
             getCustomImages(order.OrderId);
 
             // Move the Total Text then update it based on the Adjustment Price
-            var totalSumText = $('#totalSum').text(); // Use jQuery to get the totalSumText
+            var totalSumText = $('#totalSum').text();
 
             var adjustedTotalSum = (order.AdjustmentType === 'Added') 
               ? parseFloat(totalSumText) + parseFloat(order.AdjustmentPrice)
@@ -3616,7 +3619,7 @@ if(htmlPage == "statistics.html") {
             function getCustomImages(orderId) {
                 $.ajax({
                     type: "POST",
-                    url: "php-api/GetCustomImages.php", // Update the URL to your PHP script
+                    url: "php-api/GetCustomImages.php", 
                     data: { orderId: orderId },
                     dataType: "json",
                     success: function (response) {
@@ -3629,7 +3632,7 @@ if(htmlPage == "statistics.html") {
                                 var imageUrl = response.data[i].ImageUrl;
                                 var imagePrice = parseInt(response.data[i].ImagePrice);
 
-                                // Ensure 'ImageUrl' property exists before using it
+                                
                                 if (imageUrl) {
                                     var fileName = imageUrl.substring(imageUrl.lastIndexOf('/') + 1);
 
@@ -3815,32 +3818,26 @@ if(htmlPage == "statistics.html") {
 
 
         function updateAddress(addressData, successCallback, errorCallback) {
-            // Prepare the data to be sent as JSON
             var jsonData = JSON.stringify(addressData);
 
-            // Make an AJAX request
             $.ajax({
                 type: 'POST',
                 url: 'php-api/UpdateAddress.php',
                 data: jsonData,
-                contentType: 'application/json', // Set content type to JSON
+                contentType: 'application/json',
                 dataType: 'json',
                 success: function (data) {
                     if (data.status === 'success') {
-                        // Execute the success callback
                         successCallback(data.message);
                     } else {
-                        // Execute the error callback
                         errorCallback(data.message);
                     }
                 },
                 error: function (xhr, status, error) {
-                    // Log detailed information about the error
                     console.error("XHR:", xhr);
                     console.error("Status:", status);
                     console.error("Error:", error);
 
-                    // Execute the error callback
                     errorCallback('AJAX Error ' + error);
                 }
             });
@@ -3935,7 +3932,7 @@ if(htmlPage == "statistics.html") {
         });
 
         $("#loginBtn").click(function (event) {
-            event.preventDefault(); // Prevent the default form submission
+            event.preventDefault(); 
 
             var email = $("#emailInput").val();
             var password = $("#passwordInput").val();
@@ -3947,7 +3944,7 @@ if(htmlPage == "statistics.html") {
                 dataType: 'json',
                 success: function(response) {
                     openDialog(response.message, 'Status', false);
-                    // Check the status
+                    
                     if (response.status === 'success') {
                         setTimeout(function(){
                             window.location.href = 'store.html';
@@ -3985,7 +3982,7 @@ if(htmlPage == "statistics.html") {
         });
 
         $(".register-form").submit(function(event) {
-            event.preventDefault(); // Prevent the default form submission
+            event.preventDefault(); 
 
             // Perform client-side validation
             if (validateForm()) {
@@ -4015,10 +4012,10 @@ if(htmlPage == "statistics.html") {
         }
 
         function submitForm() {
-            // Prepare the form data for submission
+            
             var formData = $(".register-form").serialize();
 
-            // AJAX submission
+            
             $.ajax({
                 type: "POST",
                 url: "php-api/Registration.php",
@@ -4026,7 +4023,7 @@ if(htmlPage == "statistics.html") {
                 dataType: 'json',
                 success: function(response) {
                     openDialog(response.message, 'Status', false);
-                    // Check the status
+                    
                     if (response.status === 'success') {
                         setTimeout(function(){
                             window.location.href = 'login.html';

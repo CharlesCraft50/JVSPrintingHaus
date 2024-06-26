@@ -10,11 +10,9 @@
             $remarkId = $_POST["remarkId"];
             $replyText = isset($_POST["replyText"]) ? $_POST["replyText"] : "";
             $userId = $_SESSION['user_id'];
-            if($userId != 1) {
-                $userIdNotif = 1;
-            } else {
-                $userIdNotif = $_POST['userId'];
-            }
+
+            $userIdNotif = $_POST['userId'];
+            
             
             $referenceKey = $_POST['referenceKey'];
 
